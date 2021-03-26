@@ -1,15 +1,18 @@
-list1 = [1,2,3,4,5,6,7,8]
-#for i in list:
-#    if list[1] 
-inpu = 2
-print (list1[inpu])
-value = list(str(list1[inpu]))
-print (list1[:inpu]+list1[inpu+1:])
-listh = []
-listd = []
-for i in list1[:inpu]:
-    listh.append("*")
-for i in list1[inpu+1:]:
-    listd.append("*")
-listrep = listh + value + listd
-print (listrep)
+def cartas(chosingcards1):
+    while True:
+        try:
+            chosingcards1 = int(input("With the number 0 the first card of the list is selected, with 1 the second and so on, select the card to turn: "))
+        except ValueError:
+            print("Debes escribir un número.")
+            continue
+        if chosingcards1 < 0:
+            print("Debes escribir un número positivo.")
+            continue
+        if chosingcards1 > len(cardsp1)*2:
+            print("Debes elegir una carta dentro del rango")
+            continue
+        else:
+            break
+    return chosingcards1
+    print (chosingcards1, "posicion de carta a dar vuelta")
+cartas(True)
