@@ -1,7 +1,7 @@
 #LAB1 "memorice"
 import random
 
-print("Welcome to Memorize, with how many cards pairs do you want to play?")
+print("Welcome to Memorize, how many pairs of cards do you want to play with?")
 pairs = int(input())
 ####CREANDO EL MASO####
 cardsp1 = [] #cards
@@ -15,7 +15,7 @@ pointsp2= 0 #puntaje player 2
 
 while pointsp1 + pointsp2 < pairs:
 
-    #####PRIMERA JUGADA#####
+    
     while len(cardsp1) > 0 :
         print ("Player 1 turn, here are the cards:")
         censoredcardsp1 = []
@@ -25,8 +25,10 @@ while pointsp1 + pointsp2 < pairs:
         print("With the number 0 the first card of the list is selected, with 1 the second and so on, select the card to turn: ")
         chosingcards1= int(input()) #elige la posicion de la carta a dar vuelta
         chosencard1 = cardsp1[chosingcards1] #esta es la carta que se dio vuelta
-        thecard = list(str(cardsp1[chosingcards1])) #convierte la carta que se dio vuelta en una lista para despues sumar listas y censurar las demas
-
+        thecard = []
+        thecard.append(str(chosencard1)) #añade la carta a una lista para poder mostrarla en el tablero ya  las demas censuradas
+        #thecard = list(str(cardsp1[chosingcards1])) #convierte la carta que se dio vuelta en una lista para despues sumar listas y censurar las demas
+        print (thecard, "thecard")
         listh = [] #separa la lista para censurar (hasta esa carta)
         listd = [] #separa la lista para censurar (desde esa carta en adelante)
         liste = [] #separa la lista para censurar (entremedio de las cartas)
@@ -40,7 +42,9 @@ while pointsp1 + pointsp2 < pairs:
         chosingcards2 = int(input()) #segunda carta a dar vuelta
 
         chosencard2 = cardsp1[chosingcards2] # esta es la segunda carta que se dio vuelta
-        thecard2 = list(str(cardsp1[chosingcards2])) #convierte la segunda carta que se dio vuelta en una lista para despues sumar listas y censurar las demas
+        thecard2 = []
+        thecard2.append(str(chosencard2)) #añade la carta a una lista para poder mostrarla en el tablero ya  las demas censuradas
+        #thecard2 = list(str(cardsp1[chosingcards2])) #convierte la segunda carta que se dio vuelta en una lista para despues sumar listas y censurar las demas
 
         listh = [] #separa la lista para censurar (hasta esa carta)
         listd = [] #separa la lista para censurar (desde esa carta en adelante)
@@ -86,7 +90,9 @@ while pointsp1 + pointsp2 < pairs:
         print("With the number 0 the first card of the list is selected, with 1 the second and so on, select the card to turn: ")
         chosingcards1= int(input()) #elige la posicion de la carta a dar vuelta
         chosencard1 = cardsp1[chosingcards1] #esta es la carta que se dio vuelta
-        thecard = list(str(cardsp1[chosingcards1])) #convierte la carta que se dio vuelta en una lista para despues sumar listas y censurar las demas
+        thecard = []
+        thecard.append(str(chosencard1)) #añade la carta a una lista para poder mostrarla en el tablero ya  las demas censuradas
+        #thecard = list(str(cardsp1[chosingcards1])) #convierte la carta que se dio vuelta en una lista para despues sumar listas y censurar las demas
 
         listh = [] #separa la lista para censurar (hasta esa carta)
         listd = [] #separa la lista para censurar (desde esa carta en adelante)
@@ -101,7 +107,9 @@ while pointsp1 + pointsp2 < pairs:
         chosingcards2 = int(input()) #segunda carta a dar vuelta
 
         chosencard2 = cardsp1[chosingcards2] # esta es la segunda carta que se dio vuelta
-        thecard2 = list(str(cardsp1[chosingcards2])) #convierte la segunda carta que se dio vuelta en una lista para despues sumar listas y censurar las demas
+        thecard2 = []
+        thecard2.append(str(chosencard2)) #añade la carta a una lista para poder mostrarla en el tablero ya  las demas censuradas
+        #thecard2 = list(str(cardsp1[chosingcards2])) #convierte la segunda carta que se dio vuelta en una lista para despues sumar listas y censurar las demas
 
         listh = [] #separa la lista para censurar (hasta esa carta)
         listd = [] #separa la lista para censurar (desde esa carta en adelante)
