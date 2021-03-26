@@ -2,7 +2,17 @@
 import random
 
 print("Welcome to Memorize, how many pairs of cards do you want to play with?")
-pairs = int(input())
+while True:
+    try:
+        pairs = int(input()) #pidiendole al usuario la cantidad de cartas
+    except ValueError:
+        print("You must write a number.")
+        continue
+    if pairs < 0:
+        print("You must write a positive number.")
+        continue
+    else:
+        break
 ####CREANDO EL MASO####
 cardsp1 = [] #cards
 cardsp1= list(range(1,pairs+1))
@@ -202,5 +212,8 @@ if pointsp2 < pointsp1:
     print ("Player 1 Wins!!")
 if pointsp2 > pointsp1:
     print ("Player 2 Wins!!")
+if pointsp1 == pointsp2:
+    print ("it´s a tie!")
+
 
 
