@@ -3,11 +3,7 @@ from points import Points
 
 class Game(Points):
     def __init__(self, pairs, pointsp1, pointsp2, cardsp1):
-        #super(Game,self).__init__(pairs,pointsp1,pointsp2, cardsp1)
-        self.pairs = pairs
-        self.pointsp1 = Points.pointsp1
-        self.pointsp2 = Points.pointsp2
-        self.cardsp1 = Gameboard.cardsp1
+        super(Game).__init__(pairs, pointsp1, pointsp2, cardsp1)
 
     def game(self):
         while self.pointsp1 + self.pointsp2 < self.pairs:
