@@ -34,18 +34,18 @@ class Game(Points):
                         continue
                     else:
                         break
-                chosencard1 = self.cardsp1[chosingcards1] #esta es la carta que se dio vuelta
+                chosencard1 = self.cardsp1[chosingcards1] #this is the card that was turned over
                 thecard = []
-                thecard.append(str(chosencard1)) #añade la carta a una lista para poder mostrarla en el tablero ya  las demas censuradas
+                thecard.append(str(chosencard1)) #add the card to a list to be able to show it on the board and to the other censored
                 
-                listh = [] #separa la lista para censurar (hasta esa carta)
-                listd = [] #separa la lista para censurar (desde esa carta en adelante)
-                liste = [] #separa la lista para censurar (entremedio de las cartas)
+                listh = [] #separate the list to censor (until this card)
+                listd = [] #separate the list to censor (from this card on)
+                liste = [] #separate the list to censor (between the cards)
                 for i in self.cardsp1[:chosingcards1]:
                     listh.append("*")
                 for i in self.cardsp1[chosingcards1+1:]:
                     listd.append("*")
-                listrep = listh + thecard + listd  #lista con todo censurado excepto la carta a mostrar
+                listrep = listh + thecard + listd  #list with everything censored except the card to show
                 while True:
                     print (listrep)
                     ncards = len(self.cardsp1)-1
@@ -66,13 +66,13 @@ class Game(Points):
                     else:
                         break
 
-                chosencard2 = self.cardsp1[chosingcards2] # esta es la segunda carta que se dio vuelta
+                chosencard2 = self.cardsp1[chosingcards2] # this is the second card that was turned over
                 thecard2 = []
-                thecard2.append(str(chosencard2)) #añade la carta a una lista para poder mostrarla en el tablero ya  las demas censuradas
+                thecard2.append(str(chosencard2)) #add the card to a list to be able to show it on the board and to the other censored
                 
-                listh = [] #separa la lista para censurar (hasta esa carta)
-                listd = [] #separa la lista para censurar (desde esa carta en adelante)
-                liste = [] #separa la lista para censurar (entremedio de las cartas)
+                listh = [] #separate the list to censor (until this card)
+                listd = [] #separate the list to censor (from this card on)
+                liste = [] #separate the list to censor (between the cards)
                 if chosingcards1 < chosingcards2: 
                     for i in self.cardsp1[:chosingcards1]:
                         listh.append("*")
@@ -96,7 +96,7 @@ class Game(Points):
                 if chosencard1 == chosencard2:
                     print("You have won a point, its your turn again")
                     self.pointsp1+=1
-                    self.cardsp1.remove(chosencard1) #eliminando las cartas elegidas si esque son iguales
+                    self.cardsp1.remove(chosencard1) #eliminating the chosen cards if they are the same
                     self.cardsp1.remove(chosencard2)
                     key = False
                     
@@ -126,18 +126,18 @@ class Game(Points):
                         continue
                     else:
                         break
-                chosencard1 = self.cardsp1[chosingcards1] #esta es la carta que se dio vuelta
+                chosencard1 = self.cardsp1[chosingcards1] #this is the card that was turned over
                 thecard = []
-                thecard.append(str(chosencard1)) #añade la carta a una lista para poder mostrarla en el tablero ya  las demas censuradas
+                thecard.append(str(chosencard1)) #add the card to a list to be able to show it on the board and to the other censored
                 
-                listh = [] #separa la lista para censurar (hasta esa carta)
-                listd = [] #separa la lista para censurar (desde esa carta en adelante)
-                liste = [] #separa la lista para censurar (entremedio de las cartas)
+                listh = [] #separate the list to censor (until this card)
+                listd = [] #separate the list to censor (from this card on)
+                liste = [] #separate the list to censor (between the cards)
                 for i in self.cardsp1[:chosingcards1]:
                     listh.append("*")
                 for i in self.cardsp1[chosingcards1+1:]:
                     listd.append("*")
-                listrep = listh + thecard + listd  #lista con todo censurado excepto la carta a mostrar
+                listrep = listh + thecard + listd  #list with everything censored except the card to show
 
                 while True:
                     print (listrep)
@@ -159,13 +159,13 @@ class Game(Points):
                     else:
                         break
 
-                chosencard2 = self.cardsp1[chosingcards2] # esta es la segunda carta que se dio vuelta
+                chosencard2 = self.cardsp1[chosingcards2] # this is the second card that was turned over
                 thecard2 = []
-                thecard2.append(str(chosencard2)) #añade la carta a una lista para poder mostrarla en el tablero ya  las demas censuradas
+                thecard2.append(str(chosencard2)) #add the card to a list to be able to show it on the board and to the other censored
                 
-                listh = [] #separa la lista para censurar (hasta esa carta)
-                listd = [] #separa la lista para censurar (desde esa carta en adelante)
-                liste = [] #separa la lista para censurar (entremedio de las cartas)
+                listh = [] #separate the list to censor (until this card)
+                listd = [] #separate the list to censor (from this card on)
+                liste = [] #separate the list to censor (between the cards)
                 if chosingcards1 < chosingcards2: 
                     for i in self.cardsp1[:chosingcards1]:
                         listh.append("*")
@@ -189,7 +189,7 @@ class Game(Points):
                 if chosencard1 == chosencard2:
                     print("You have won a point, its your turn again")
                     self.pointsp2+=1
-                    self.cardsp1.remove(chosencard1) #eliminando las cartas elegidas si esque son iguales
+                    self.cardsp1.remove(chosencard1) #eliminating the chosen cards if they are the same
                     self.cardsp1.remove(chosencard2)
                     continue
                 else:
