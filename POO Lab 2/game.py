@@ -8,6 +8,7 @@ class Game(Points):
         self.pointsp1 = Points.pointsp1
         self.pointsp2 = Points.pointsp2
         self.cardsp1 = Gameboard.cardsp1
+    
 
     def game(self):
         while self.pointsp1 + self.pointsp2 < self.pairs:
