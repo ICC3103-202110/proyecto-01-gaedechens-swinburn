@@ -53,4 +53,3 @@ if __name__=='__main__':
                 duke_buffer = Duke("duke","1 duke")
                 duke_buffer.action(dealer,dealer.players[player_phase])
         phase_counter +=1
-        
