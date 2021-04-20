@@ -14,7 +14,13 @@ class Hero(ABC):
     @abstractmethod
     def counter_action(self):#abstract method because each character is going to have a different method
         pass
-  
+
+class Empty_hero(Hero): #hero empty, because we need it or the program goes down when None type wants to interact with methods
+    def action(self):
+        nada = ()
+    def counter_action(self):
+        nada = ()
+
 class Duke(Hero):
     def action(self,Dealer,player):
         did_player_shown_duke = Dealer.check_for_bluff(player)
@@ -23,9 +29,7 @@ class Duke(Hero):
         if did_player_shown_duke == False:
             if len(Dealer.bag_coins) > 2:
                 for i in range(0,3):
-                    player.pocket_coins.append("coin")
-                for i in range(0,3):
-                    Dealer.bag_coins.pop(0)
+                    insert_one(Dealer,player)
                 return True
         else:
             #TO DO
@@ -33,12 +37,20 @@ class Duke(Hero):
             print("!replacing duke hero!")
             pass
         return False
+        
     def counter_action(self,action_name):
         if action_name == 'Foreign Aid':
             return True
         return False
+
+def anounce_death(target_player):
+    print("\n    --ANOUNCMENT-- \n ")
+    print("Player "+target_player.get_name() + " is out of the game !")
+    print("\n        --EOA--\n")
+
 class Assasin(Hero):
     def action(self,Dealer,target_player,player): #something like this i think
+        empty_hero = Empty_hero("empty","no hay nadie aca")
         for i in range(0,3):
             player.pocket_coins.pop(0)    
         insert_three(Dealer)
@@ -47,14 +59,14 @@ class Assasin(Hero):
         target_player_option = input("Response : ")
         if target_player_option == "1":
             if player.hero1.hero_name == 'Assasin' or player.hero2.hero_name == 'Assasin':
-                target_player.hero1 = None
-                target_player.hero2 = None
+                target_player.hero1 = empty_hero
+                target_player.hero2 = empty_hero
             else:
                 player.get_rid_of_a_card()
         else:
             target_player.get_rid_of_a_card()      
         return True
-    def counter_action(self,action_name):
+    def counter_action(self,action_name):#MOMENTARY NEED CAHNGE!!!!!!
         if action_name == 'Foreign Aid':
             return True
         return False
@@ -63,19 +75,22 @@ class Player:
         self.name = name
         self.hero1 = hero1
         self.hero2 = hero2
-        self.pocket_coins = draw_two()
+        self.pocket_coins = ["coin","coin"]
     
     def lose_influence(self,number):
+        empty_hero = Empty_hero("empty","no hay nadie aca")
         if number == "1":
-            self.hero1 = None
+            
+            self.hero1 = empty_hero
         elif number == "2":
-            self.hero2 = None
+            self.hero2 = empty_hero
 
     def get_name(self): #get name obviously
         return self.name
 
     def get_rid_of_a_card(self):
         print("Hello player "+self.get_name())
+        empty_hero = Empty_hero("empty","no hay nadie aca")
         if self.hero1.hero_name and self.hero2.hero_name:#####PROBLEM HERE 'NoneType' object has no attribute 'hero_name', #####
             print("Chose what influence to lose \n [1] "+str(self.hero1.hero_name)+" \n [2] "+str(self.hero2.hero_name))
             lose = input("Enter your influence number : ")
@@ -83,11 +98,11 @@ class Player:
         elif self.hero1.hero_name:
             print("Chose what influence to lose \n [1] "+str(self.hero1.hero_name))
             lose = input("Enter your influence number : ")
-            self.hero1 = None
+            self.hero1 = empty_hero
         elif self.hero2.hero_name:
             print("Chose what influence to lose \n [2] "+str(self.hero2.hero_name))
             lose = input("Enter your influence number : ")
-            self.hero2 = None
+            self.hero2 = empty_hero
 
     def show_options(self):
         print("Showing current status for player " + self.get_name())
@@ -135,14 +150,20 @@ class Dealer:
 class Token: #the coin of the game
     def __init__(self,name):
         self.name = name
+
+def insert_one(Dealer,player):
+        player.pocket_coins.append('coin')
+        Dealer.bag_coins.pop(0)
         
-def draw_two():#this is to give the players 2 coins at the start of the game
+"""def draw_two():#this is to give the players 2 coins at the start of the game
     coins = []
     for i in range(0,2):
         buffer_token = Token("coin")
         coins.append(buffer_token)
         return coins
-
+    for i in range(0,2):
+        insert_one(Dealer,Player)
+    return"""
 def insert_three(Dealer): #paying the dealer 3 coins
     for i in range(0,3):
         buffer_token = Token("coin")

@@ -33,9 +33,15 @@ if __name__=='__main__':
             dealer.players[player_phase].show_options()
             
             #Current player ----> dealer.players[player_phase]
-            
+            current_player = dealer.players[player_phase]
             #option choosing part
             opcion = show_and_get_option(dealer)
+
+            if opcion == "1":
+                insert_one(Dealer,dealer.players[player_phase])
+           
+                print("1 coin has been addes to the bag")
+
             if opcion == "5":
                 
                 #assasination menu
@@ -52,4 +58,13 @@ if __name__=='__main__':
             elif opcion == "4":
                 duke_buffer = Duke("duke","1 duke")
                 duke_buffer.action(dealer,dealer.players[player_phase])
+        #EOT
+        still = []
+        for i in dealer.players:
+            if i.hero1.hero_name != "empty" or i.hero2.hero_name != "empty":
+                still.append(i)
+        if len(still) == 1:
+            print("Se acabo y gano el jugador "+ str(player_phase+1))
+            break
         phase_counter +=1
+print("Thanks for playing")
