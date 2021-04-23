@@ -1,16 +1,15 @@
 
-
 from abc import ABC,abstractmethod
 
 class Hero(ABC):
     def __init__(self,hero_name,description):
         self.hero_name = hero_name
         self.description = description
-    
+   
     @abstractmethod
     def action(self):#abstract method because each character is going to have a different method
         pass
-    
+   
     @abstractmethod
     def counter_action(self):#abstract method because each character is going to have a different method
         pass
@@ -37,7 +36,7 @@ class Duke(Hero):
             print("!replacing duke hero!")
             pass
         return False
-        
+       
     def counter_action(self,action_name):
         if action_name == 'Foreign Aid':
             return True
@@ -76,11 +75,11 @@ class Player:
         self.hero1 = hero1
         self.hero2 = hero2
         self.pocket_coins = ["coin","coin"]
-    
+   
     def lose_influence(self,number):
         empty_hero = Empty_hero("empty","no hay nadie aca")
         if number == "1":
-            
+           
             self.hero1 = empty_hero
         elif number == "2":
             self.hero2 = empty_hero
@@ -109,7 +108,7 @@ class Player:
         if self.hero1:
             print("Hero 1  ["+self.hero1.hero_name+"]")
         if self.hero2:
-            print("Hero 2  ["+self.hero2.hero_name+"]") 
+            print("Hero 2  ["+self.hero2.hero_name+"]")
         print("Total coins in the BAAAGGG "+ str(len(self.pocket_coins)))
 
 class Dealer:
@@ -144,7 +143,7 @@ class Dealer:
                 if player_buffer_option == "1":
                     if player.hero1.hero_name == 'Duke' or player.hero2.hero_name == 'Duke':
                         did_player_shown_duke = True
-                        player_buffer.get_rid_of_a_card()       
+                        player_buffer.get_rid_of_a_card()      
                     break
         return did_player_shown_duke
 
@@ -170,8 +169,8 @@ class Dealer:
             print("-----\n Foreign Aid Successfully retrived! \n \n ")
            
         return did_player_shown_duke
-            
-        
+           
+       
     def foreign_aid_counteraction(self,player,player_buffer):
         # player ----> traying to do a foreing aid
         # player_buffer -----> traying to stop that player
@@ -198,44 +197,30 @@ class Dealer:
             return True
             player.pocket_coins.pop(0)
             player.pocket_coins.pop(0)
-"""
-    def insert_one(self,player):#this function is to give a player one coin and at the same time subtract one coin from the dealers bag
-        player.pocket_coins.append('coin')
-        Dealer.bag_of_coins.pop(0)"""
 
-"""def foreign_aid_counteraction(player):
-    
-    for player_buffer in self.players:
-            if player_buffer == player:
-                print("\n ----- \n Hello player "+player.get_name()+ ','+player_buffer.get_name()+ 'has counter attacked you, how would you like to respond' +' \n [1] Yes is bluffing \n [2] No he is not bluffing"' )
-                player_buffer_option = str(input("Insert option : "))
-                if player_buffer_option == "1":
-                    if player_buffer.hero1.hero_name == 'Duke' or player_buffer.hero2.hero_name == 'Duke':
-                        
-                        player.get_rid_of_a_card()      
-                        break
-                   
-                    if player_buffer.hero1.hero_name != 'Duke' and player_buffer.hero2.hero_name != 'Duke':
-                        
-                        player_buffer.get_rid_of_a_card()
-                        break
-                else:
-                    print("Someone blocked your action, so you dont get the 2 coins of Foreign Aid")
-                    player.pocket_coins.pop(0)
-                    player.pocket_coins.pop(0)"""
-
-
-
-class Token: #the coin of the game
-    def __init__(self,name):
-        self.name = name
+    def coup(self,player):
+        if len(player.pocket_coins) >= 7:
+            print("What player should loose an influence? \n ")
+            for i in self.players:
+                if i.get_name() != player.get_name():
+                    print("Player "+i.get_name())
+            while True:
+                coup_option  = input("Insert player : ")
+                for i in self.players:
+                    if i.get_name() != player.get_name():
+                        if coup_option == i.get_name():
+                            #selected valid target
+                            i.get_rid_of_a_card()
+                            print("Coup retrieved successfully")
+                            return True
+                print("Incorret player option try again ... \n ")
+            return False
 
 def insert_one(Dealer,player):#this function is to give a player one coin and at the same time subtract one coin from the dealers bag
         player.pocket_coins.append('coin')
         Dealer.bag_of_coins.pop(0)
-        
+       
 
 def insert_three(Dealer): #paying the dealer 3 coins
     for i in range(0,3):
         Dealer.bag_of_coins.append('coin')
-
