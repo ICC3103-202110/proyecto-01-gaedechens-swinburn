@@ -2,14 +2,17 @@
 Asumtions
 
   Log
+
         The log of the game doesn’t keep track of the players that an action was done to, it only states the actions that were done by the players. This way, the player that was paying attention has the advantage.
 
 
-  Dealer      
+  Dealer     
+
         You get random card from a deck, so you can get the same hero twice
  
 
   Assasinations
+
         One player can assasinate what ever player he choses from the board, including himself.
 
         If aplayer doesnt have enough coins to kill someone but decided to commit an assasination, then he looses his turn. 
@@ -22,10 +25,12 @@ Asumtions
 
 
   Captain
+
         If someone steals from you, another player can save you first by blocking that move!, before you even have to doubt it, but you will still be provided with the option to dount it!
 
         If you have the Captain, you cannot steal coins from someone that does not have any. If this happens, the program will crash.
       
 
   Ambassador
+  
         In order to use the Ambassador’s action, exchange, you have to have the Ambassador as one of your influence cards. Otherwise, a player could exchange their cards with the deck too easily. In other words, you cannot bluff having the Ambassador. 
