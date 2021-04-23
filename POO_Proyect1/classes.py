@@ -122,6 +122,11 @@ class Captain(Hero):
                                     print("Ooops you didnt guess it correctly and you got blocked ...")
                                     player.get_rid_of_a_card()
                                     didnt_got_blocked = False
+                                    if i.hero1.hero_name == "Captain":
+                                        dealer.change_first_card(i)
+                                    elif i.hero2.hero_name == "Captain":
+                                        dealer.change_second_card(i)
+                                    print("!replacing captain hero!")
                                     break
                                 else:
                                     print("You doubted correctly, that player didnt had a captain!")
@@ -144,6 +149,11 @@ class Captain(Hero):
                         if option == "1":
                             if player.hero1.hero_name == "Captain" or player.hero2.hero_name == "Captain":
                                 print("\n OOps Your bluff went wrong")
+                                if player.hero1.hero_name == "Captain":
+                                    dealer.change_first_card(player)
+                                elif player.hero2.hero_name == "Captain":
+                                    dealer.change_second_card(player)
+                                print("!replacing captain hero!")
                                 i.get_rid_of_a_card()
                                 break  
                             else:
@@ -181,6 +191,11 @@ class Assasin(Hero):
         target_player_option = input("Response : ")
         if target_player_option == "1":
             if player.hero1.hero_name == 'Assasin' or player.hero2.hero_name == 'Assasin':
+                if player.hero1.hero_name == "Assasin":
+                    Dealer.change_first_card(player)
+                elif player.hero2.hero_name == "Assasin":
+                    Dealer.change_second_card(player)
+                print("!replacing assasin hero!")
                 target_player.hero1 = empty_hero
                 target_player.hero2 = empty_hero
             else:
