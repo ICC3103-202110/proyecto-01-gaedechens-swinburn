@@ -22,20 +22,50 @@ if __name__=='__main__':
     dealer = Dealer(amount_of_players) #creating instance for Dealer 
     dealer.show_players()
     phase_counter = 0
+    log= []
     while True:
         #current player
         player_phase = phase_counter%amount_of_players
-        if dealer.players[player_phase].hero1 != None or dealer.players[player_phase].hero2 != None: 
+        
+        if dealer.players[player_phase].hero1.hero_name != "empty" or dealer.players[player_phase].hero2.hero_name != "empty": 
             showturn(player_phase)
-            
+            for i in log:
+                print(i)
             #actual turn
             print(dealer.players[player_phase].get_name())
             dealer.players[player_phase].show_options()
             
             #Current player ----> dealer.players[player_phase]
             current_player = dealer.players[player_phase]
+            if dealer.players[player_phase].get_name() == "1": #"reseting" the log when the round its over
+                log = []
+
             #option choosing part
             opcion = show_and_get_option(dealer)
+            
+            #CREATING THE LOG
+            if opcion =="1":
+                    text = ("Player"+str(dealer.players[player_phase].get_name()) + " did the action Income")
+                    log.append(text)
+            elif opcion =="2":
+                    text = ("Player"+str(dealer.players[player_phase].get_name()) + " did the action Foreign Aid")
+                    log.append(text)
+            elif opcion =="3":
+                    text = ("Player"+str(dealer.players[player_phase].get_name()) + " did the action Coup")
+                    log.append(text)
+            elif opcion =="4":
+                    text = ("Player"+str(dealer.players[player_phase].get_name()) + " did the action Tax")
+                    log.append(text)
+            elif opcion =="5":
+                    text = ("Player"+str(dealer.players[player_phase].get_name()) + " did the action Assassinate")
+                    log.append(text)
+            elif opcion =="6":
+                    text = ("Player"+str(dealer.players[player_phase].get_name()) + " did the action Exchange")
+                    log.append(text)
+            elif opcion =="7":
+                    text = ("Player"+str(dealer.players[player_phase].get_name()) + " did the action Steal")
+                    log.append(text)
+            #END OF CREATING THE LOG
 
             if opcion == "1":
                 insert_one(Dealer,dealer.players[player_phase])
@@ -67,14 +97,16 @@ if __name__=='__main__':
                         break
                     else:
                         print("Incorect player election... returning")
+
             elif opcion == "6":
                 ambassador_buffer = Ambassador("Ambassador","1 ambassador")
                 ambassador_buffer.action(dealer,dealer.players[player_phase])
-                
+
             elif opcion == "7":
                 captain_buffer = Captain("captain","1 captain")
                 captain_buffer.action(dealer,dealer.players[player_phase])
-        #EOT
+
+        #EndOfTurn
         still = []
         for i in dealer.players:
             if i.hero1.hero_name != "empty" or i.hero2.hero_name != "empty":
@@ -83,4 +115,5 @@ if __name__=='__main__':
             print("Se acabo y gano el jugador "+ str(player_phase+1))
             break
         phase_counter +=1
+    
 print("Thanks for playing")

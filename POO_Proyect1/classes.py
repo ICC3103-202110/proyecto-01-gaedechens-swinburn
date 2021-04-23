@@ -37,7 +37,6 @@ class Duke(Hero):
                     insert_one(Dealer,player)
                 return True
         else:
-           
             #replase the hero duke of the player
             if player.hero1.hero_name == "Duke":
                 Dealer.change_first_card(player)
@@ -81,11 +80,6 @@ class Ambassador(Hero):
             
             else:
                 print("You dont have the Ambassador hero")
-                
-            
-        
-
-
     def counter_action(self,action_name):
         pass
 
@@ -227,7 +221,7 @@ class Assasin(Hero):
         else:
             target_player.get_rid_of_a_card()      
         return True
-    def counter_action(self,action_name):#MOMENTARY NEED CHANGE!!!!!!
+    def counter_action(self,action_name):#we did this counteraction of another way, with the contessa card
         if action_name == 'Foreign Aid':
             return True
         return False
@@ -238,7 +232,7 @@ class Player:
         self.hero2 = hero2
         self.pocket_coins = ["coin","coin"]
     
-    def lose_influence(self,number):
+    def lose_influence(self,number): #this function is to select one influence and kill it
         empty_hero = Empty_hero("empty","no hay nadie aca")
         if number == "1":
             
@@ -249,7 +243,7 @@ class Player:
     def get_name(self): #get name obviously
         return self.name
 
-    def get_rid_of_a_card(self):
+    def get_rid_of_a_card(self): #This function is to select one hero to loose
         print("Hello player "+self.get_name())
         empty_hero = Empty_hero("empty","no hay nadie aca")
         if self.hero1.hero_name and self.hero2.hero_name:
@@ -265,7 +259,7 @@ class Player:
             lose = input("Enter your influence number : ")
             self.hero2 = empty_hero
 
-    def show_options(self):
+    def show_options(self): #This is the current status for the player
         print("Showing current status for player " + self.get_name())
         if self.hero1:
             print("Hero 1  ["+self.hero1.hero_name+"]")
@@ -322,13 +316,13 @@ class Dealer:
 
     def show_players(self): #this is to show all players
         print("Showing players! ")
-        for i in self.players:#BEFORE THIS WE NEED TO INCLUDE ONLY THE PLAYERS THAT STILL ALIVE
+        for i in self.players:
             print("Player "+i.get_name())
 
     def get_player_count(self): #counter of players
         return len(self.players)  
 
-    def check_for_bluff(self,player):#checking the bluff for the duke hero.... WE NEED TO CHANGE THE NAME OF THE FUNCION PLZ......
+    def check_for_bluff(self,player):#checking the bluff for the duke hero.... 
         did_player_shown_duke = False
         for player_buffer in self.players:
             if player_buffer != player:
@@ -341,7 +335,7 @@ class Dealer:
                     break
         return did_player_shown_duke
 
-    def check_for_counteraction_option_foreign_aid(self,player):
+    def check_for_counteraction_option_foreign_aid(self,player): #check if someone wants to counter the Foreign Aid move
         did_player_shown_duke = False
         someone_dooubt_it = True
         someone_counter_it_successfully = False
