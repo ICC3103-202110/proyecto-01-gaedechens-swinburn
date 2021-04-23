@@ -53,6 +53,37 @@ def anounce_death(target_player):
     print("Player "+target_player.get_name() + " is out of the game !")
     print("\n        --EOA--\n")
 
+class Ambassador(Hero):
+    def action(self,dealer,player):
+        if player.hero1.hero_name != "empty" and player.hero2.hero_name != "empty":
+            if player.hero1.hero_name == 'Ambassador' or player.hero2.hero_name == 'Ambassador':
+                print ("Changing your both cards")
+                Dealer.change_both_cards(dealer,player)
+
+            else:
+                print("You dont have the Ambassador hero")
+        elif player.hero1.hero_name != "empty" and player.hero2.hero_name == "empty":
+            if player.hero1.hero_name == 'Ambassador':
+                print("Changing hero 1" )
+                Dealer.change_first_card(dealer,player)
+            else:
+                print("You dont have the Ambassador hero")
+                
+
+        elif player.hero2.hero_name != "empty" and player.hero1.hero_name == "empty":
+            if player.hero2.hero_name == 'Ambassador':
+                print("Changing hero 2" )
+                Dealer.change_second_card(dealer,player)
+            
+            else:
+                print("You dont have the Ambassador hero")
+                
+            
+        
+
+
+    def counter_action(self,action_name):
+        pass
 
 class Captain(Hero):
     def action(self,dealer,player):
@@ -232,23 +263,44 @@ class Dealer:
                      description='1 assasin')
         contess = Contessa(hero_name='Contessa', description='1 contessa')
         captain = Captain(hero_name='Captain', description= '1 captain')
+        ambassador = Ambassador(hero_name= "Ambassador", description="1 ambassador")
         capp = [captain for i in range(0,3)]
         cont = [contess for i in range(0,3)]
         assa = [assasin for i in range(0,3)]
         duk = [duke for i in range(0,3)]
-        deck = cont+ assa + duk + capp
-        random.shuffle(deck)
+        amb = [ambassador for i in range(0,3)]
+        self.deck = cont+ assa + duk + capp + amb
+        random.shuffle(self.deck)
                      #creating some heroes to try the game
         self.players = []#the list of the players
         for i in range(0,player_amount): #creating players
-            first_hero_buffer = deck.pop(0)
-            random.shuffle(deck)
-            second_hero_buffer = deck.pop(0)
-            random.shuffle(deck)
+            first_hero_buffer = self.deck.pop(0)
+            random.shuffle(self.deck)
+            second_hero_buffer = self.deck.pop(0)
+            random.shuffle(self.deck)
             player_buffer = Player(str(i+1),first_hero_buffer,second_hero_buffer)
             self.players.append(player_buffer)
 
     bag_of_coins = ["coin" for i in range(0,50)] #this is going to be the bank of coins of the game
+
+    def change_both_cards(self,player):
+        self.deck.append(player.hero1)
+        self.deck.append(player.hero2)
+        random.shuffle(self.deck)
+        player.hero1 = self.deck.pop(0)
+        player.hero2 = self.deck.pop(0)
+
+    def change_first_card(self,player):
+        self.deck.append(player.hero1)
+        random.shuffle(self.deck)
+        player.hero1 = self.deck.pop(0)
+
+    def change_second_card(self,player):
+        self.deck.append(player.hero2)
+        random.shuffle(self.deck)
+        player.hero2 = self.deck.pop(0)
+
+
 
     def show_players(self): #this is to show all players
         print("Showing players! ")

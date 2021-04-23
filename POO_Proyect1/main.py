@@ -67,7 +67,10 @@ if __name__=='__main__':
                         break
                     else:
                         print("Incorect player election... returning")
-            
+            elif opcion == "6":
+                ambassador_buffer = Ambassador("Ambassador","1 ambassador")
+                ambassador_buffer.action(dealer,dealer.players[player_phase])
+                
             elif opcion == "7":
                 captain_buffer = Captain("captain","1 captain")
                 captain_buffer.action(dealer,dealer.players[player_phase])
