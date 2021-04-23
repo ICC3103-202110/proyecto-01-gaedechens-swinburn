@@ -1,5 +1,5 @@
 from abc import ABC,abstractmethod
-
+import random
 class Hero(ABC):
     def __init__(self,hero_name,description):
         self.hero_name = hero_name
@@ -232,10 +232,20 @@ class Dealer:
                      description='1 assasin')
         contess = Contessa(hero_name='Contessa', description='1 contessa')
         captain = Captain(hero_name='Captain', description= '1 captain')
+        capp = [captain for i in range(0,3)]
+        cont = [contess for i in range(0,3)]
+        assa = [assasin for i in range(0,3)]
+        duk = [duke for i in range(0,3)]
+        deck = cont+ assa + duk + capp
+        random.shuffle(deck)
                      #creating some heroes to try the game
         self.players = []#the list of the players
         for i in range(0,player_amount): #creating players
-            player_buffer = Player(str(i+1),contess,captain) #need to be random
+            first_hero_buffer = deck.pop(0)
+            random.shuffle(deck)
+            second_hero_buffer = deck.pop(0)
+            random.shuffle(deck)
+            player_buffer = Player(str(i+1),first_hero_buffer,second_hero_buffer)
             self.players.append(player_buffer)
 
     bag_of_coins = ["coin" for i in range(0,50)] #this is going to be the bank of coins of the game
