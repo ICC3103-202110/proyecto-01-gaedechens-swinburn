@@ -37,8 +37,12 @@ class Duke(Hero):
                     insert_one(Dealer,player)
                 return True
         else:
-            #TO DO
+           
             #replase the hero duke of the player
+            if player.hero1.hero_name == "Duke":
+                Dealer.change_first_card(player)
+            elif player.hero2.hero_name == "Duke":
+                Dealer.change_second_card(player)
             print("!replacing duke hero!")
             pass
         return False
@@ -167,7 +171,7 @@ class Captain(Hero):
 
 
 class Assasin(Hero):
-    def action(self,Dealer,target_player,player): #something like this i think
+    def action(self,Dealer,target_player,player):
         empty_hero = Empty_hero("empty","no hay nadie aca")
         for i in range(0,3):
             player.pocket_coins.pop(0)    
@@ -199,12 +203,11 @@ class Assasin(Hero):
                             except Exception:
                                 print("You bluffed wrong, you got assasinated and you loose one cuz of your BLUFFING skills")
                                 break
-                    #elif player_input_against_contessmove == "2":
+                
                     else:
                         print("Assesintaion retrieved unsuccessfully")
                         return False
-                    """else:
-                        print("invalid option try again ...\n ")"""  
+                     
                     break
         else:
             target_player.get_rid_of_a_card()      
@@ -269,9 +272,9 @@ class Dealer:
         assa = [assasin for i in range(0,3)]
         duk = [duke for i in range(0,3)]
         amb = [ambassador for i in range(0,3)]
-        self.deck = cont+ assa + duk + capp + amb
+        self.deck = cont+ assa + duk + capp + amb #deck of cards
         random.shuffle(self.deck)
-                     #creating some heroes to try the game
+    
         self.players = []#the list of the players
         for i in range(0,player_amount): #creating players
             first_hero_buffer = self.deck.pop(0)
@@ -283,19 +286,19 @@ class Dealer:
 
     bag_of_coins = ["coin" for i in range(0,50)] #this is going to be the bank of coins of the game
 
-    def change_both_cards(self,player):
+    def change_both_cards(self,player): #this changes both cards of a player
         self.deck.append(player.hero1)
         self.deck.append(player.hero2)
         random.shuffle(self.deck)
         player.hero1 = self.deck.pop(0)
         player.hero2 = self.deck.pop(0)
 
-    def change_first_card(self,player):
+    def change_first_card(self,player): #this change hero1 of the player
         self.deck.append(player.hero1)
         random.shuffle(self.deck)
         player.hero1 = self.deck.pop(0)
 
-    def change_second_card(self,player):
+    def change_second_card(self,player): #this change hero2 of the player
         self.deck.append(player.hero2)
         random.shuffle(self.deck)
         player.hero2 = self.deck.pop(0)
