@@ -71,9 +71,9 @@ class Captain(Hero):
     def counter_action(self,action_name):
         pass
    
-    def doubt_captain(self,daler,player,target_player):
+    def doubt_captain(self,dealer,player,target_player):
         didnt_got_blocked = True
-        for i in daler.players: #COUNTERACTION 
+        for i in dealer.players: #COUNTERACTION 
             if i.get_name() != player.get_name():
                 if i.get_name() != target_player.get_name():
                     while True:
@@ -100,7 +100,7 @@ class Captain(Hero):
                         else:
                             print("Invalid option returning...")
                                            
-        for i in daler.players: #DOUBT OPTION FOR TARGET PLAYER
+        for i in dealer.players: #DOUBT OPTION FOR TARGET PLAYER
             if i.get_name() != player.get_name():
                 if i.get_name() == target_player.get_name():
                     while True:
