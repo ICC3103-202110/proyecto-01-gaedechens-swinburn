@@ -1,4 +1,4 @@
-from classes import *
+from classes import * 
 
 def showturn(player_phase):
     print("--------")
@@ -18,20 +18,20 @@ def show_and_get_option(dealer):
 
 if __name__=='__main__':
     print("Welcome to Coup! ")
-    amount_of_players = int(input("Enter player amount :"))
-    dealer = Dealer(amount_of_players) #creating instance for Dealer
+    amount_of_players = int(input("Enter player amount :")) 
+    dealer = Dealer(amount_of_players) #creating instance for Dealer 
     dealer.show_players()
     phase_counter = 0
     while True:
         #current player
         player_phase = phase_counter%amount_of_players
-        if dealer.players[player_phase].hero1 != None or dealer.players[player_phase].hero2 != None:
+        if dealer.players[player_phase].hero1 != None or dealer.players[player_phase].hero2 != None: 
             showturn(player_phase)
-           
+            
             #actual turn
             print(dealer.players[player_phase].get_name())
             dealer.players[player_phase].show_options()
-           
+            
             #Current player ----> dealer.players[player_phase]
             current_player = dealer.players[player_phase]
             #option choosing part
@@ -51,7 +51,7 @@ if __name__=='__main__':
                         dealer.players[player_phase].pocket_coins.pop(0)
 
             if opcion == "5":
-               
+                
                 #assasination menu
                 while True:
                     print("Posible targets bellow")
