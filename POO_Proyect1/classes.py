@@ -150,36 +150,54 @@ class Dealer:
 
     def check_for_counteraction_option_foreign_aid(self,player):
         did_player_shown_duke = False
-        for player_buffer in self.players: ##########AttributeError: type object 'Dealer' has no attribute 'players' EEEEEERRRRRRRRRRRROOOOOOOOOOOOORRRRRRRRRRRRRRR!!!!!!!!!!!!
-            if player_buffer != player:
+        someone_dooubt_it = True
+        someone_counter_it_successfully = False
+        for player_buffer in self.players:
+            if player_buffer.get_name != player.get_name:
                 print("\n ----- \n Hello player "+player_buffer.get_name() + " \n would you like to counter attack "+ player.get_name()+" on that Foreign Aid move? \n [1] Yes block it \n [2] No dont block it")
                 player_buffer_option = str(input("Insert option : "))
                 if player_buffer_option == "1":
-                    Dealer.foreign_aid_counteraction(self,player)
+                    someone_dooubt_it = True
+                    someone_counter_it_successfully = self.foreign_aid_counteraction(player,player_buffer)
                     break
                 else:
-                    continue
-            
+                    pass
+        if someone_counter_it_successfully:
+            pass
+        else:
+            player.pocket_coins.append("coin")
+            player.pocket_coins.append("coin")
+            print("-----\n Foreign Aid Successfully retrived! \n \n ")
+           
         return did_player_shown_duke
-    def foreign_aid_counteraction(self,player):
-        for player_buffer in self.players:
-                if player_buffer == player:
-                    print("\n ----- \n Hello player "+player.get_name()+ ','+player_buffer.get_name()+ 'has counter attacked you, how would you like to respond' +' \n [1] Yes is bluffing \n [2] No he is not bluffing"' )
-                    player_buffer_option = str(input("Insert option : "))
-                    if player_buffer_option == "1":
-                        if player_buffer.hero1.hero_name == 'Duke' or player_buffer.hero2.hero_name == 'Duke':
-                            did_player_show_duke = True
-                            player.get_rid_of_a_card()      
-                            break
-                    
-                        if player_buffer.hero1.hero_name != 'Duke' and player_buffer.hero2.hero_name != 'Duke':
-                            did_player_show_duke = False
-                            player_buffer.get_rid_of_a_card()
-                            break
-                    else:
-                        print("Someone blocked your action, so you dont get the 2 coins of Foreign Aid")
-                        player.pocket_coins.pop(0)
-                        player.pocket_coins.pop(0)
+            
+        
+    def foreign_aid_counteraction(self,player,player_buffer):
+        # player ----> traying to do a foreing aid
+        # player_buffer -----> traying to stop that player
+        print("\n ----- \n Hello player "+player.get_name()+ ', the Player '+player_buffer.get_name()+ 'has counter your foreign Aid , Do oyou belive he is bluffing the Duke?' +' \n [1] Yes is bluffing \n [2] No he is not bluffing"' )
+        player_option = str(input("Insert option : "))
+        did_player_show_duke = False
+        if player_option == "1":
+            if player_buffer.hero1.hero_name == 'Duke' or player_buffer.hero2.hero_name == 'Duke':
+                did_player_show_duke = True
+                print("\n OOps you doubted wrong, the player "+ player_buffer.get_name() + " had the Duke, now get rid of a card ! \n")
+                player.get_rid_of_a_card()      
+                #draw one hero
+            elif player_buffer.hero1.hero_name != 'Duke' and player_buffer.hero2.hero_name != 'Duke':
+                did_player_show_duke = False
+                player_buffer.get_rid_of_a_card()
+                #draw one hero
+            # analize the results of the past interaciton
+            if did_player_show_duke:
+                return True
+            else:
+                return False    
+        else:
+            print("Someone blocked your action, so you dont get the 2 coins of Foreign Aid")
+            return True
+            player.pocket_coins.pop(0)
+            player.pocket_coins.pop(0)
 """
     def insert_one(self,player):#this function is to give a player one coin and at the same time subtract one coin from the dealers bag
         player.pocket_coins.append('coin')
@@ -219,6 +237,5 @@ def insert_one(Dealer,player):#this function is to give a player one coin and at
 
 def insert_three(Dealer): #paying the dealer 3 coins
     for i in range(0,3):
-        buffer_token = Token("coin")
-        Dealer.bag_of_coins.append(buffer_token)
+        Dealer.bag_of_coins.append('coin')
 

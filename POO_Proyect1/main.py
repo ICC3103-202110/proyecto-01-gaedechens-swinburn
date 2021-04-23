@@ -43,9 +43,7 @@ if __name__=='__main__':
                 print("1 coin has been added to the bag")
 
             if opcion == "2":
-                insert_one(Dealer,dealer.players[player_phase])
-                insert_one(Dealer,dealer.players[player_phase])
-                Dealer.check_for_counteraction_option_foreign_aid(Dealer,dealer.players[player_phase])
+                dealer.check_for_counteraction_option_foreign_aid(dealer.players[player_phase])
 
 
 
