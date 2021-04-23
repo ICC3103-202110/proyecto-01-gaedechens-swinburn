@@ -53,6 +53,88 @@ def anounce_death(target_player):
     print("Player "+target_player.get_name() + " is out of the game !")
     print("\n        --EOA--\n")
 
+
+class Captain(Hero):
+    def action(self,dealer,player):
+        print("Pick a Target player")
+        for i in dealer.players:
+            if i.get_name() != player.get_name():
+                print(i.get_name())
+        while True:
+            opt = input("insert player option : ")
+            if len(dealer.players) < int(opt):
+                print("invalid returning...")
+            else:
+                print("Starting steal move!")
+                self.doubt_captain(dealer,player,dealer.players[int(opt)-1])
+                break        
+    def counter_action(self,action_name):
+        pass
+   
+    def doubt_captain(self,daler,player,target_player):
+        didnt_got_blocked = True
+        for i in daler.players: #COUNTERACTION 
+            if i.get_name() != player.get_name():
+                if i.get_name() != target_player.get_name():
+                    while True:
+                        print("\n Hello player "+i.get_name()+ " would you block the player " + player.get_name() + " of his Captain moove ? \n [1] Yes block it \n [2] No , let it pass \n ")
+                        option = input("Insert option : ")
+                        if option == "1":
+                            print("\n Hello player "+ player.get_name()+ " the player  " + i.get_name()+ " has blocked your moove, do you thinks he is bluffing ? \n [1] Yes he is bluffing \n [2] No he is not bluffing ")
+                            player_option = input("Insert option : ")
+                            if player_option == "1" :
+                                if i.hero1.hero_name == 'Captain' or i.hero2.hero_name == 'Captain':
+                                    print("Ooops you didnt guess it correctly and you got blocked ...")
+                                    player.get_rid_of_a_card()
+                                    didnt_got_blocked = False
+                                    break
+                                else:
+                                    print("You doubted correctly, that player didnt had a captain!")
+                                    i.get_rid_of_a_card()
+                                    break
+                            if player_option == "2" :
+                                didnt_got_blocked = False#he got blocked and didnt doubt it
+                                break
+                        elif option == "2":
+                            break
+                        else:
+                            print("Invalid option returning...")
+                                           
+        for i in daler.players: #DOUBT OPTION FOR TARGET PLAYER
+            if i.get_name() != player.get_name():
+                if i.get_name() == target_player.get_name():
+                    while True:
+                        print("\n Hello player "+i.get_name()+ " would you doubt the player " + player.get_name() + " of his Captain moove against YOU ? \n [1] Yes its a bluff \n [2] No its not a bluff \n")
+                        option = input("Insert option : ")
+                        if option == "1":
+                            if player.hero1.hero_name == "Captain" or player.hero2.hero_name == "Captain":
+                                print("\n OOps Your bluff went wrong")
+                                i.get_rid_of_a_card()
+                                break  
+                            else:
+                                print("Doubted correctly the player didnt had the captain! ")
+                                player.get_rid_of_a_card()
+                                break
+                        elif option == "2":
+                            if didnt_got_blocked:    
+                                try:
+                                    i.pocket_coins.pop(0)
+                                    player.pocket_coins.append("coin")
+                                    i.pocket_coins.pop(0)
+                                    player.pocket_coins.append("coin")
+                                    print("steal completed!")
+                                    break
+                                except Exception:
+                                    print("Target player didnt had enough coins for the whole steal !")
+                                    print("steal completed!")
+                                    break
+                            else:
+                                print("you got blocked from your steal move! better luck next time ")
+                                break
+                        else:
+                            print("Invalid option returning...")
+
+
 class Assasin(Hero):
     def action(self,Dealer,target_player,player): #something like this i think
         empty_hero = Empty_hero("empty","no hay nadie aca")
@@ -147,10 +229,11 @@ class Dealer:
         assasin = Assasin(hero_name='Assasin',
                      description='1 assasin')
         contess = Contessa(hero_name='Contessa', description='1 contessa')
+        captain = Captain(hero_name='Captain', description= '1 captain')
                      #creating some heroes to try the game
         self.players = []#the list of the players
         for i in range(0,player_amount): #creating players
-            player_buffer = Player(str(i+1),contess,assasin) #need to be random
+            player_buffer = Player(str(i+1),contess,captain) #need to be random
             self.players.append(player_buffer)
 
     bag_of_coins = ["coin" for i in range(0,50)] #this is going to be the bank of coins of the game

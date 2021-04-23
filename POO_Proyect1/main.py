@@ -42,15 +42,19 @@ if __name__=='__main__':
            
                 print("1 coin has been added to the bag")
 
-            if opcion == "2":
+            elif opcion == "2":
                 dealer.check_for_counteraction_option_foreign_aid(dealer.players[player_phase])
 
-            if opcion == "3":
+            elif opcion == "3":
                 if dealer.coup(dealer.players[player_phase]):
                     for i in range(0,7):
                         dealer.players[player_phase].pocket_coins.pop(0)
-
-            if opcion == "5":
+            
+            elif opcion == "4":
+                duke_buffer = Duke("duke","1 duke")
+                duke_buffer.action(dealer,dealer.players[player_phase])
+           
+            elif opcion == "5":
                 
                 #assasination menu
                 while True:
@@ -63,9 +67,10 @@ if __name__=='__main__':
                         break
                     else:
                         print("Incorect player election... returning")
-            elif opcion == "4":
-                duke_buffer = Duke("duke","1 duke")
-                duke_buffer.action(dealer,dealer.players[player_phase])
+            
+            elif opcion == "7":
+                captain_buffer = Captain("captain","1 captain")
+                captain_buffer.action(dealer,dealer.players[player_phase])
         #EOT
         still = []
         for i in dealer.players:
