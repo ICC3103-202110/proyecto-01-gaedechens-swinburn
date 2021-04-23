@@ -15,9 +15,9 @@ class Hero(ABC):
 
 class Empty_hero(Hero): #hero empty, because we need it or the program goes down when None type wants to interact with methods
     def action(self):
-        nada = ()
+        pass
     def counter_action(self):
-        nada = ()
+        pass
 
 class Contessa(Hero):
     def action(self,Dealer,player):
@@ -151,7 +151,7 @@ class Assasin(Hero):
             else:
                 player.get_rid_of_a_card()
 
-        elif target_player_option == "3":
+        elif target_player_option == "3": #blocked with contessa
                 while True:
                     print("Hello player "+player.get_name()+ "\n the player "+ target_player.get_name() + "  Blocked your assasinationn with a Contessa, \n Do you think its a bluff ? \n [1] Yes, its a bluff \n [2] No, He is not bluffing")
                     player_input_against_contessmove = input("Insert option : ")
@@ -164,15 +164,17 @@ class Assasin(Hero):
                                 target_player.get_rid_of_a_card()
                                 print("You bluffed wrong, you got assasinated and you loose one cuz of your BLUFFING skills")
                                 return False
+                                break
                             except Exception:
                                 print("You bluffed wrong, you got assasinated and you loose one cuz of your BLUFFING skills")
                                 break
-                    elif player_input_against_contessmove == "2":
+                    #elif player_input_against_contessmove == "2":
+                    else:
                         print("Assesintaion retrieved unsuccessfully")
                         return False
-                    else:
-                        print("invalid option try again ...\n ")  
-
+                    """else:
+                        print("invalid option try again ...\n ")"""  
+                    break
         else:
             target_player.get_rid_of_a_card()      
         return True
